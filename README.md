@@ -2,6 +2,7 @@
 
 Binary segmentation of camouflaged objects in natural images: given an RGB photo, predict a pixel-level mask of the camouflaged object (animal or otherwise) within it. This is a supervised deep learning task: both architectures are neural networks trained end-to-end on labeled image/mask pairs, which places the project within the broader field of machine learning rather than alongside it as a separate category.
 
+
 ![predictions](docs/images/res.png)
 
 
@@ -155,17 +156,4 @@ MAE (0.115) is higher here than in an earlier, unweighted-loss configuration (0.
 higher IoU/Dice. The `pos_weight` correction trades calibration for detection sensitivity,
 motivating a follow-up sweep over positive-class weights before treating the current setting as final.
 
-## Repository contents
-
-```
-kamuplahe/
-├── README.md
-├── docs/images/
-└── camouflaged_object_detection.ipynb
-```
-
-## Running it
-
-Colab, GPU runtime required. Dataset loads via `kagglehub` on first run with a manual-upload
-fallback. Full training run (full dataset, both architectures) takes on the order of an hour on
-a T4; keep the runtime active until the notebook's final cell has produced output.
+---
