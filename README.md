@@ -2,6 +2,9 @@
 
 Binary segmentation of camouflaged objects in natural images: given an RGB photo, predict a pixel-level mask of the camouflaged object (animal or otherwise) within it.
 
+![predictions](docs/images/res.png)
+
+
 ## Applications
 
 Binary camouflage segmentation has applications across fields where objects blend into their surroundings, including ecological monitoring, search and rescue, medical imaging, industrial inspection, defense and surveillance research, and agricultural pest detection. These applications involve detecting targets that are difficult to distinguish from complex backgrounds due to similar color, texture, or patterns.
