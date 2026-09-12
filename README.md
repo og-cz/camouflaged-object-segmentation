@@ -53,81 +53,39 @@ $$
 Training minimizes a BCE + Dice objective:
 
 $$
-\mathcal{L}
-=
-\mathcal{L}_{BCE}
-+
-\mathcal{L}_{Dice}.
+\mathcal{L} = \mathcal{L}_{BCE} + \mathcal{L}_{Dice}.
 $$
 
 Because the mean foreground coverage is only 5.7% (measured precisely at $p\approx0.0575$), BCE
 uses a positive-class weight derived from the foreground/background ratio:
 
 $$
-w_+ =
-\frac{1-p}{p}
-=
-\frac{1-0.0575}{0.0575}
-\approx 16.4.
+w_+ = \frac{1-p}{p} = \frac{1-0.0575}{0.0575} \approx 16.4.
 $$
 
 The weighted BCE term is
 
 $$
-\mathcal{L}_{BCE}
-=
--\frac{1}{HW}
-\sum_{i=1}^{H}\sum_{j=1}^{W}
-\left[
-w_+M_{ij}\log P_{ij}
-+
-(1-M_{ij})\log(1-P_{ij})
-\right].
+\mathcal{L}_{BCE} = -\frac{1}{HW}\sum_{i=1}^{H}\sum_{j=1}^{W}\left[w_+M_{ij}\log P_{ij} + (1-M_{ij})\log(1-P_{ij})\right].
 $$
 
 Dice loss directly optimizes foreground overlap:
 
 $$
-\mathcal{L}_{Dice}
-=
-1-
-\frac{
-2\sum_{i,j}M_{ij}P_{ij}+\epsilon
-}{
-\sum_{i,j}M_{ij}+\sum_{i,j}P_{ij}+\epsilon
-}.
+\mathcal{L}_{Dice} = 1-\frac{2\sum_{i,j}M_{ij}P_{ij}+\epsilon}{\sum_{i,j}M_{ij}+\sum_{i,j}P_{ij}+\epsilon}.
 $$
 
 Thus, the learned parameters can be expressed as
 
 $$
-\theta^*
-=
-\arg\min_\theta
-\mathbb{E}_{(I,M)\sim\mathcal{D}}
-\left[
-\mathcal{L}
-\left(\sigma(f_\theta(I)),M\right)
-\right].
+\theta^* = \arg\min_\theta \mathbb{E}_{(I,M)\sim\mathcal{D}}\left[\mathcal{L}\left(\sigma(f_\theta(I)),M\right)\right].
 $$
 
 At inference, the two horizontally-flipped logit maps are averaged before the sigmoid is applied
 (test-time augmentation):
 
 $$
-P_{TTA}
-=
-\sigma\!\left(
-\frac{1}{2}
-\left[
-f_\theta(I)
-+
-\operatorname{flip}
-\left(
-f_\theta(\operatorname{flip}(I))
-\right)
-\right]
-\right).
+P_{TTA} = \sigma\left(\frac{1}{2}\left[f_\theta(I) + \text{flip}\left(f_\theta(\text{flip}(I))\right)\right]\right).
 $$
 
 The final threshold $\tau$ is selected independently on the validation set by maximizing Dice
@@ -135,7 +93,6 @@ rather than assuming $\tau=0.5$.
 
 Dataset pairing is performed by filename stem rather than assumed folder-to-folder correspondence,
 since Kaggle repackagings vary in structure and may contain masks without matching images.
-
 ## Results
 
 Validation, both models at their own tuned threshold:
