@@ -1,6 +1,6 @@
 # Kamuplahe - Camouflaged Object Segmentation
 
-Binary segmentation of camouflaged objects in natural images: given an RGB photo, predict a pixel-level mask of the camouflaged object (animal or otherwise) within it.
+Binary segmentation of camouflaged objects in natural images: given an RGB photo, predict a pixel-level mask of the camouflaged object (animal or otherwise) within it. This is a supervised deep learning task: both architectures are neural networks trained end-to-end on labeled image/mask pairs, which places the project within the broader field of machine learning rather than alongside it as a separate category.
 
 ![predictions](docs/images/res.png)
 
