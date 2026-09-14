@@ -1,6 +1,6 @@
 # Kamuplahe - Camouflaged Object Segmentation
 
-Binary segmentation of camouflaged objects in natural images: given an RGB photo, predict a pixel-level mask of the camouflaged object (animal or otherwise) within it. This is a supervised deep learning task: both architectures are neural networks trained end-to-end on labeled image/mask pairs, which places the project within the broader field of machine learning rather than alongside it as a separate category.
+Kamuplahe is a deep learning for detecting and segmenting objects that visually blend into their surroundings. Given a natural RGB image, the model identifies the camouflaged object and generates a pixel-level segmentation mask separating it from the background. The project implements and compares two segmentation architectures, U-Net with a ResNet18 encoder and SegFormer with a MiT-B1 encoder, trained on paired images and ground-truth masks. The pipeline includes image preprocessing, weighted BCE + Dice loss, validation-based threshold selection, early stopping, and test-time augmentation. The final model is evaluated across multiple camouflage benchmarks using IoU, Dice, precision, recall, and MAE to measure how accurately the predicted masks recover the hidden objects.
 
 
 ![predictions](docs/images/res.png)
